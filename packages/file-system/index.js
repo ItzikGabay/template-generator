@@ -1,7 +1,7 @@
 import { cp, writeFile } from 'node:fs/promises';
 import logs from "../logs/index.js";
 
-export class FileSystem {
+export default class FileSystem {
     constructor() {
     }
 
