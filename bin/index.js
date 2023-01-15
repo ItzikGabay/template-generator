@@ -22,4 +22,5 @@ import { fileURLToPath } from "url";
   }
 
   await fse.copyFolder(`${folderPath}/${type}`, processPath);
+  logs.success(`Successfully copied ${type} project to '${processPath}'`);
 })();
