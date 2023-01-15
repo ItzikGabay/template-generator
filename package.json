@@ -10,6 +10,7 @@
     "start": "generate-template",
     "update": "npm install -g ."
   },
+  "type": "module",
   "author": "Itzikgabay <itzikdevio@gmail.com>",
   "license": "MIT",
   "dependencies": {
