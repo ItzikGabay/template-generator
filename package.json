@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "bin/index.js",
   "bin": {
-    "generate-template": "./bin/index.js"
+    "generate-template": "./bin/index.js",
+    "gn": "./bin/index.js"
   },
   "scripts": {
     "dev": "node bin/index.js",
@@ -14,6 +15,7 @@
   "author": "Itzikgabay <itzikdevio@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "path": "^0.12.7",
     "template-generator": "./"
   }
 }
