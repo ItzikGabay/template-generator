@@ -1,0 +1,7 @@
+{
+  "name": "template-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Itzikgabay <itzikdevio@gmail.com>",
+  "license": "MIT"
+}
