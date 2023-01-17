@@ -12,14 +12,14 @@ import { fileURLToPath } from "url";
   // (first is node, the second is the file path)
   const [type] = process.argv.slice(2);
 
+  if (!type) {
+    return logs.warning(errors.NO_TYPE_PROVIDED);
+  }
+
   const fse = new FileSystem();
   const processPath = process.cwd();
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const folderPath = path.resolve(__dirname, "../templates");
-
-  if (!type) {
-    return logs.warning(errors.NO_TYPE_PROVIDED);
-  }
 
   await fse.copyFolder(`${folderPath}/${type}`, processPath);
   logs.success(`Successfully copied ${type} project to '${processPath}'`);
