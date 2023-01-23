@@ -47,7 +47,7 @@ export const gitClone = async (path) => {
   const processPath = process.cwd();
 
   try {
-    await execSync(`git clone ${path}`, {
+    await execSync(`git clone ${path} . --depth=1`, {
       stdio: [0, 1, 2],
       cwd: processPath,
     });
