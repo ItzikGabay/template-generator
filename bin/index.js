@@ -8,17 +8,16 @@ import config from "../packages/config/index.js";
 
 (async () => {
   // Removes the first two arguments
-  const [templateName, installType, repoPath] = process.argv.slice(2);
+  const [template, repoPath] = process.argv.slice(2);
 
-  if (!templateName || !config.availableTemplates[templateName]) {
+  if (!template || !config.availableTemplates[template]) {
     return logs.warning(errors.NO_TYPE_PROVIDED);
   }
 
-  if(installType === '--git') {
+  if(template === '--git') {
     return await gitClone(repoPath);
   }
 
-  return await copyFolderByType(templateName);
+  return await copyFolderByType(template);
 })();
-
 // usage: template-generator [name] [path] [options]
