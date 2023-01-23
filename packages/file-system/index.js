@@ -43,21 +43,27 @@ export const copyFolderByType = async (type) => {
   await fse.copyFolder(`${folderPath}/${type}`, processPath);
 };
 
+const execCommand = (command) => {
+  try {
+    execSync(command, {
+      stdio: [0, 1, 2],
+      cwd: processPath,
+    });
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 export const gitClone = async (path) => {
   const processPath = process.cwd();
 
   try {
-    execSync(`git clone ${path} . --depth=1`, {
-      stdio: [0, 1, 2],
-      cwd: processPath,
-    });
-
+    // clone files and remove .git folder
+    execCommand(`git clone ${path} . --depth=1`);
     rimraf.sync(processPath + "/.git");
 
-    execSync(`git init`, {
-      stdio: [0, 1, 2],
-      cwd: processPath,
-    });
+    // create new git repo
+    execCommand("git init");
   } catch (err) {
     return;
   }
