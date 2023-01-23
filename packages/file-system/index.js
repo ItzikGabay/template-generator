@@ -3,6 +3,8 @@ import logs from "../logs/index.js";
 import errors from "../utils/errors.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import { execSync } from 'child_process';
+import rimraf from 'rimraf'
 
 export default class FileSystem {
   constructor() {}
@@ -40,3 +42,18 @@ export const copyFolderByType = async (type) => {
 
   await fse.copyFolder(`${folderPath}/${type}`, processPath);
 };
+
+export const gitClone = async (path) => {
+  const processPath = process.cwd();
+
+  try {
+    await execSync(`git clone ${path}`, {
+      stdio: [0, 1, 2],
+      cwd: processPath,
+    });
+
+    await rimraf.sync(processPath + '/.git');
+  } catch(e) {
+    console.log("e1")
+  }
+}
