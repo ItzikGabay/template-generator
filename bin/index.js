@@ -15,7 +15,7 @@ import config from "../packages/config/index.js";
   }
 
   if (isGitMode) {
-    return await gitClone(repoPath);
+    return gitClone(repoPath);
   }
 
   return await copyFolderByType(template);

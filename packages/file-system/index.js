@@ -6,6 +6,8 @@ import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import rimraf from "rimraf";
 
+const processPath = process.cwd();
+
 export default class FileSystem {
   constructor() {}
 
@@ -36,11 +38,12 @@ export default class FileSystem {
 
 export const copyFolderByType = async (type) => {
   const fse = new FileSystem();
-  const processPath = process.cwd();
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const folderPath = path.resolve(__dirname, "../../templates");
 
   await fse.copyFolder(`${folderPath}/${type}`, processPath);
+
+  return true;
 };
 
 const execCommand = (command) => {
@@ -54,9 +57,7 @@ const execCommand = (command) => {
   }
 };
 
-export const gitClone = async (path) => {
-  const processPath = process.cwd();
-
+export const gitClone = (path) => {
   try {
     // clone files and remove .git folder
     execCommand(`git clone ${path} . --depth=1`);
@@ -64,7 +65,8 @@ export const gitClone = async (path) => {
 
     // create new git repo
     execCommand("git init");
+    return true;
   } catch (err) {
-    return;
+    return false;
   }
 };
